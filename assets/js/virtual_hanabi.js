@@ -1,6 +1,7 @@
 let canvas;
 let fireworks = [];
 let stars = [];
+let bgm = new Audio('./assets/bgm/fireworks1.mp3');
 
 /*
  * 花火クラス
@@ -261,8 +262,9 @@ function setup() {
  * フレーム毎処理
  */
 function draw() {
-  drawBackgroung(0, 0, width, height, color(0, 0, 0), color(24, 32, 72));
+  drawBackgroung(0, 0, width, height, color(0, 0, 0), color(20, 30, 60));
   this.drawStars();
+  bgm.play();
 
   // 花火を打ち上げる間隔を調整
   if (frameCount % 50 === 0) {
@@ -323,3 +325,11 @@ function drawBackgroung(x, y, w, h, c1, c2) {
     line(x, i, x + w, i);
   }
 }
+
+/*
+ * BGM終了時イベント処理
+ */
+bgm.addEventListener("ended", function () {
+  bmg.currentTime = 0;
+  bmg.play();
+}, false);
