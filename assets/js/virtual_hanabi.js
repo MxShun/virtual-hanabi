@@ -1,6 +1,6 @@
-const canvas;
-const fireworks = [];
-const stars = [];
+let canvas;
+let fireworks = [];
+let stars = [];
 
 /*
  * 花火クラス
@@ -293,7 +293,7 @@ function windowResized() {
  * 星の設定
  */
 function preStars() {
-  for (const i = 0; i < 100; i++) {
+  for (let i = 0; i < 100; i++) {
     stars.push([random(width), random(height / 2), random(1, 4)]);
   }
 }
@@ -316,7 +316,7 @@ function drawStars() {
 function drawBackgroung(x, y, w, h, c1, c2) {
   noFill();
   // グラデーション描画
-  for (const i = y; i <= y + h; i++) {
+  for (let i = y; i <= y + h; i++) {
     const inter = map(i, y, y + h, 0, 1);
     const c = lerpColor(c1, c2, inter);
     stroke(c);
