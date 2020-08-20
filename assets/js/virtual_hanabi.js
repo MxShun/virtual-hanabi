@@ -100,7 +100,7 @@ class Firework {
         this.next = this.frame + Math.round(this.exDelay);
       } else if (this.next === this.frame) {
         // 花火の大きさ
-        for (const i = 0; i < this.ball; i++) {
+        for (let i = 0; i < this.ball; i++) {
           // 爆発の角度
           const r = random(0, 360);
           // 花火の内側を作る（バラバラ）
