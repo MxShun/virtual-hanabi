@@ -270,7 +270,7 @@ function setup() {
  * フレーム毎処理
  */
 function draw() {
-  drawBackgroung(0, 0, width, height, color(0, 0, 0), color(20, 30, 60));
+  drawBackgroung(0, 0, width, height, color(0, 0, 0), color(0, 0, 48));
   this.drawStars();
 
   // 花火を打ち上げる間隔を調整
@@ -296,6 +296,14 @@ function draw() {
 function windowResized() {
   resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
   this.preStars();
+}
+
+/*
+ * 画面クリック時処理
+ */
+function mousePressed() {
+  const speed = random(10, 30);
+  fireworks.push(new Firework(random(width), height, 0, speed, 0.98));
 }
 
 /*
