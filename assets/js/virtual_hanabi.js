@@ -262,7 +262,7 @@ function setup() {
   canvas.style("z-index", "-1");
   colorMode(RGB);
   frameRate(60);
-  //bgm.loop();
+  bgm.loop();
   this.preStars();
 }
 
