@@ -5,10 +5,10 @@
 Virtual Hanabi is a CG artwork that's visualization of virtual fireworks.
 
 I used to feel to the coming of summers through seeing, hearing and smelling fireworks.
-However most of firework events are cancelled this summer due to COVID-19. That makes me so sad.
+However most of firework events are cancelled this summer due to COVID-19. It makes me so sad.
 That's why, I realize fireworks on Web instead of actual one.
 
-To visualize it, [p5.js](https://p5js.org/) was pretty effective. It's based on [Processing](https://processing.org/), it muse be the next standard of Web CG.
+To visualize it, [p5.js](https://p5js.org/) was pretty effective. It's based on [Processing](https://processing.org/), it muse be the next standard of Web CG frameworks.
 
 
 ## Exhibition
