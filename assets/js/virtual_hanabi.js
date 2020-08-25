@@ -20,9 +20,9 @@ class Firework {
     this.fireHeight = height - this.maxHeight;
     // フレームカウンター
     this.frame = 0;
-    // ステータスカウンター；0:打ち上げ, 1:爆発
+    // ステータスカウンター；0:初期, 1打ち上げ済み, 2:爆発済み
     this.type = 0;
-    // 遅延時間調整用変数
+    // 爆発まで遅延用変数
     this.next = 0;
     // 花火の色
     this.r = random(155) + 80;
@@ -56,7 +56,7 @@ class Firework {
   }
 
   /*
-   * ステータス管理
+   * フレーム処理
    */
   fire() {
     switch (this.type) {
@@ -257,30 +257,25 @@ function preload() {
  * 初期設定
  */
 function setup() {
-  canvas = createCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
-  canvas.position(0, 0);
-  canvas.style("z-index", "-1");
-  colorMode(RGB);
-  frameRate(60);
+  createCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight).position(0, 0);
   bgm.loop();
-  this.preStars();
+  preStars();
 }
 
 /*
  * フレーム毎処理
  */
 function draw() {
-  drawBackgroung(0, 0, width, height, color(0, 0, 0), color(0, 0, 48));
-  this.drawStars();
+  drawBackgroung();
+  drawStars();
 
-  // 花火を打ち上げる間隔を調整
-  if (frameCount % 50 === 0) {
-    const speed = random(10, 30);
-    fireworks.push(new Firework(random(width), height, 0, speed, 0.98));
+  // 1/3秒ごとに1/2の確立で花火を打ち上げる
+  if (frameCount % 20 == 0 && random() * 2 > 1) {
+    fireworks.push(new Firework(random(width), height, 0, random(10, 30), 0.98));
   }
 
   for (const fw of fireworks) {
-    // 打ち切った花火を処理対象から外す
+    // 爆発した花火を処理対象から外す
     if (fw.getType === 2 || fw.getFrame > 30000) {
       fireworks = fireworks.filter((n) => n !== fw);
       continue;
@@ -330,13 +325,13 @@ function drawStars() {
 /*
  * 背景の描画
  */
-function drawBackgroung(x, y, w, h, c1, c2) {
+function drawBackgroung() {
   noFill();
   // グラデーション描画
-  for (let i = y; i <= y + h; i++) {
-    const inter = map(i, y, y + h, 0, 1);
-    const c = lerpColor(c1, c2, inter);
+  for (let i = 0; i <= 0 + height; i++) {
+    const inter = map(i, 0, 0 + height, 0, 1);
+    const c = lerpColor(color(0, 0, 0), color(0, 0, 48), inter);
     stroke(c);
-    line(x, i, x + w, i);
+    line(0, i, 0 + width, i);
   }
 }
